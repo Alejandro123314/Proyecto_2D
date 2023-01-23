@@ -19,10 +19,11 @@ public class Juego extends Application {
 	private Scene scene;
 	private Canvas lienzo;
 	private Fondo fondo;
-	private static boolean arriba;
-	private static boolean abajo;
-	private static boolean derecha;
-	private static boolean izquierda;
+	private Jugador jugador;
+	public static boolean arriba;
+	public static boolean abajo;
+	public static boolean derecha;
+	public static boolean izquierda;
 	public static HashMap<String, Image> imagenes;
 
 	public static void main(String[] args) {
@@ -42,6 +43,7 @@ public class Juego extends Application {
 
 	public void cargarImagenes() {
 		imagenes.put("BosqueVerde", new Image("images/BosqueVerde.png"));
+		imagenes.put("Personaje", new Image("images/ReaperChiquito.jpg"));
 
 	}
 
@@ -57,6 +59,7 @@ public class Juego extends Application {
 		imagenes = new HashMap<String, Image>();
 		cargarImagenes();
 		fondo = new Fondo(0, 0, "BosqueVerde", 0);
+		jugador = new Jugador(0, 0, "Personaje", 0);
 		root = new Group();
 		scene = new Scene(root, 800, 600);
 		lienzo = new Canvas(1000, 1000);
@@ -66,7 +69,7 @@ public class Juego extends Application {
 
 	public void pintar() {
 		fondo.pintar(graficos);
-		graficos.drawImage(imagenes.get("BosqueVerde"), 0, 0);
+		jugador.pintar(graficos);
 
 	}
 
