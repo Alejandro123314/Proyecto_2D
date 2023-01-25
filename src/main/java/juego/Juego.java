@@ -2,6 +2,7 @@ package juego;
 
 import java.util.HashMap;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -34,11 +35,10 @@ public class Juego extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		inicializarComponentes();
 		gestionEventos();
-		cicloJuego();
-		pintar();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Monkey Brosh");
 		primaryStage.show();
+		cicloJuego();
 	}
 
 	public void cargarImagenes() {
@@ -48,18 +48,34 @@ public class Juego extends Application {
 	}
 
 	public void cicloJuego() {
+		
+		long tiempoInicial = System.nanoTime();
+		AnimationTimer animationTimer = new AnimationTimer() {
+			
+			
+			@Override
+			public void handle(long tiempoActual) {
+				double t = (tiempoActual - tiempoInicial) / 500000000.0;
+				actualizarEstado();
+				pintar();
+									
+			}
+		};
 
+		animationTimer.start();
+		
 	}
 
 	public void actualizarEstado() {
 		fondo.mover();
+		jugador.mover();
 	}
 
 	public void inicializarComponentes() {
 		imagenes = new HashMap<String, Image>();
 		cargarImagenes();
 		fondo = new Fondo(0, 0, "BosqueVerde", 0);
-		jugador = new Jugador(0, 0, "Personaje", 0);
+		jugador = new Jugador(3, 3, "Personaje", 10);
 		root = new Group();
 		scene = new Scene(root, 800, 600);
 		lienzo = new Canvas(1000, 1000);
@@ -90,7 +106,7 @@ public class Juego extends Application {
 					arriba = true;
 					break;
 				case "DOWN":
-					abajo = true;
+					abajo = true;				
 				}
 			}
 		});
@@ -109,7 +125,7 @@ public class Juego extends Application {
 					arriba = false;
 					break;
 				case "DOWN":
-					abajo = false;
+					abajo = false;			
 				}
 			}
 		});
