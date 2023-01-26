@@ -42,7 +42,8 @@ public class Juego extends Application {
 	}
 
 	public void cargarImagenes() {
-		imagenes.put("BosqueVerde", new Image("images/BosqueVerde.png"));
+		imagenes.put("BosqueVerde", new Image("images/BosqueVerdeG.png"));
+		imagenes.put("BosqueVerde2", new Image("images/BosqueVerdeG.png"));
 		imagenes.put("Personaje", new Image("images/ReaperChiquito.jpg"));
 
 	}
@@ -74,7 +75,7 @@ public class Juego extends Application {
 	public void inicializarComponentes() {
 		imagenes = new HashMap<String, Image>();
 		cargarImagenes();
-		fondo = new Fondo(0, 0, "BosqueVerde", 0);
+		fondo = new Fondo(0, 0, "BosqueVerde", "BosqueVerde2", 3);
 		jugador = new Jugador(3, 3, "Personaje", 10);
 		root = new Group();
 		scene = new Scene(root, 800, 600);
