@@ -34,13 +34,15 @@ public class Fondo extends ObjetoJuego {
 			System.out.println("hola2");
 		}
 		
-		if(Juego.derecha)
+		if(Juego.derecha) {
 			x-=velocidad;
 			x2-=velocidad;
+		}
 		
-		if(Juego.izquierda)
+		if(Juego.izquierda) {
 			x+=velocidad;
 			x2+=velocidad;
+		}
 		
 	}
 //192.168.1.165 puerto:50.555
